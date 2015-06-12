@@ -24,29 +24,6 @@ package com.almalence.opencam;
 
 //-+- -->
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-import org.xmlpull.v1.XmlPullParserException;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -91,18 +68,18 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.almalence.SwapHeap;
-
+import com.almalence.opencam.cameracontroller.CameraController;
+import com.almalence.opencam.ui.AlmalenceGUI.ShutterButton;
 import com.almalence.plugins.capture.standard.CapturePlugin;
-import com.almalence.plugins.export.standard.ExportPlugin;
-import com.almalence.plugins.export.standard.GPSTagsConverter;
 import com.almalence.plugins.export.standard.ExifDriver.ExifDriver;
 import com.almalence.plugins.export.standard.ExifDriver.ExifManager;
 import com.almalence.plugins.export.standard.ExifDriver.Values.ValueByteArray;
 import com.almalence.plugins.export.standard.ExifDriver.Values.ValueNumber;
 import com.almalence.plugins.export.standard.ExifDriver.Values.ValueRationals;
+import com.almalence.plugins.export.standard.ExportPlugin;
+import com.almalence.plugins.export.standard.GPSTagsConverter;
 import com.almalence.plugins.processing.simple.SimpleProcessingPlugin;
 import com.almalence.plugins.vf.aeawlock.AeAwLockVFPlugin;
-//import com.almalence.plugins.vf.barcodescanner.BarcodeScannerVFPlugin;
 import com.almalence.plugins.vf.focus.FocusVFPlugin;
 import com.almalence.plugins.vf.grid.GridVFPlugin;
 import com.almalence.plugins.vf.histogram.HistogramVFPlugin;
@@ -116,8 +93,30 @@ import com.almalence.util.exifreader.metadata.Metadata;
 import com.almalence.util.exifreader.metadata.exif.ExifIFD0Directory;
 import com.almalence.util.exifreader.metadata.exif.ExifSubIFDDirectory;
 
-import com.almalence.opencam.cameracontroller.CameraController;
-import com.almalence.opencam.ui.AlmalenceGUI.ShutterButton;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+//import com.almalence.plugins.vf.barcodescanner.BarcodeScannerVFPlugin;
 
 /***
  * Plugins managing class.
@@ -738,7 +737,7 @@ public class PluginManager implements PluginManagerInterface
 
 					CameraScreenActivity.getInstance().guiManager.stopCaptureIndication();
 					
-					CameraScreenActivity.getGUIManager().lockControls = false;
+					//CameraScreenActivity.getGUIManager().lockControls = false;
 					PluginManager.getInstance().sendMessage(PluginManager.MSG_BROADCAST, PluginManager.MSG_CONTROL_UNLOCKED);
 				} else
 				{
@@ -1442,9 +1441,9 @@ public class PluginManager implements PluginManagerInterface
 
 			if (!PluginManager.getInstance().getActiveModeID().equals("video"))
 			{
-				CameraScreenActivity.getGUIManager().lockControls = false;
-				PluginManager.getInstance()
-						.sendMessage(PluginManager.MSG_BROADCAST, PluginManager.MSG_CONTROL_UNLOCKED);
+				//CameraScreenActivity.getGUIManager().lockControls = false;
+				//PluginManager.getInstance()
+				//		.sendMessage(PluginManager.MSG_BROADCAST, PluginManager.MSG_CONTROL_UNLOCKED);
 			}
 			
 			break;
@@ -1489,7 +1488,7 @@ public class PluginManager implements PluginManagerInterface
 				sessionID = Long.parseLong(getFromSharedMem("sessionID"));
 
 			// notify GUI about saved images
-			CameraScreenActivity.getGUIManager().lockControls = false;
+//			CameraScreenActivity.getGUIManager().lockControls = false;
 			PluginManager.getInstance().sendMessage(PluginManager.MSG_BROADCAST, PluginManager.MSG_CONTROL_UNLOCKED);
 
 			CameraScreenActivity.getGUIManager().onPostProcessingFinished();

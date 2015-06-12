@@ -20,19 +20,9 @@ by Almalence Inc. All Rights Reserved.
 package com.almalence.opencam.ui;
 
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,13 +37,10 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -79,7 +66,6 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -89,14 +75,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.almalence.googsharing.Thumbnail;
-
-import com.almalence.opencam.CameraScreenActivity;
-import com.almalence.ui.Panel;
-import com.almalence.ui.Panel.OnPanelListener;
-import com.almalence.ui.RotateImageView;
-import com.almalence.util.Util;
-//<!-- -+-
 import com.almalence.opencam.CameraParameters;
+import com.almalence.opencam.CameraScreenActivity;
 import com.almalence.opencam.ConfigParser;
 import com.almalence.opencam.Mode;
 import com.almalence.opencam.Plugin;
@@ -105,6 +85,18 @@ import com.almalence.opencam.PluginType;
 import com.almalence.opencam.Preferences;
 import com.almalence.opencam.R;
 import com.almalence.opencam.cameracontroller.CameraController;
+import com.almalence.ui.RotateImageView;
+import com.almalence.util.Util;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+//<!-- -+-
 
 
 
@@ -2493,7 +2485,7 @@ public class AlmalenceGUI extends GUI implements SeekBar.OnSeekBarChangeListener
 	{
 
 		int id = button.getId();
-		if (lockControls && R.id.buttonShutter != id)
+		if (lockControls)
 			return;
 
 		// 1. if quick settings slider visible - lock everything
